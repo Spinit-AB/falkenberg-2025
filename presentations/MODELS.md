@@ -11,18 +11,49 @@ footer: "Falkenberg 2025"
 
 # Språkmodeller för utvecklare
 
-- **Syfte**: Förstå skillnader mellan modelltyper, tokens och priser, vad reasoning innebär, samt när man väljer vilken modell.
+- **Syfte**: Förstå skillnader mellan modeller, tokens och priser, vad reasoning innebär, samt när man väljer vilken modell.
 
 ---
 
-## Agenda
+![bg 95%](./images/aa_intelligence_index.png)
 
-- Tokens, kontext och kostnader (input vs output)
-- Modelltyper: non‑reasoning vs reasoning, storlek, multimodalitet
-- När väljer man vad? Beslutsguide och tumregler
-- Verktyg: function calling, RAG, finetuning
-- Parametrar, latens och skalning
-- Kvalitet, utvärdering och säkerhet
+<!--
+Idag finns det väldigt många språkmodeller att välja mellan, och det är inte helt enkelt att välja mellan dem.
+
+Här ser ni de idag högst presterande modellerna när man har evaluerat dem mot åtta olika benchmarks som testar  allt ifrån modellarnas förmåga att följa instruktioner och skriva kod, till biologi och kemi.
+-->
+
+---
+
+![bg 95%](./images/aa_coding_index.png)
+
+<!--
+Om man istället bara kollar på resultatet från de två kod-benchmarksen så ser resultatet istället ut såhär.
+
+Här kan man se att GPT-5 som tidigare låg på en första plats har tappat ganska mycket, och att den mest populära modellen för kodagenter, Claude 4 Sonnet, ligger ganska långt ifrån toppen.
+-->
+
+---
+
+## Att välja modell
+
+- Benchmarks säger någonting, men långt ifrån allt.
+<!--
+Resultaten från såna här evalueringar används ofta i marknadsföringssyfte och det finns risk för att företagen har anpassat sina modeller för att bättre klara av frågor som är väldigt lika dem i dessa tester, eller att de exakta frågorna har funnits med i träningsdatan.
+-->
+- Det finns ingen modell som är bäst på allt.
+<!--
+Olika användningsområden kräver olika modeller.
+
+Du kommer inte vilja använda samma modell för att göra en snabb kodändring över ett par markerade rader, som den du använder för att rådfråga om en komplex arkitektursfråga.
+-->
+
+- Svarskvalitet är inte det enda att ta hänsyn till, även hastighet och kostnad spelar roll.
+<!--
+Det är alltid en balansgång mellan dessa faktorer.
+
+Om du startar en agent som arbetar i bakgrunden medan du själv jobbar med något annat, så bryr du dig förmodligen inte om hastigheten, kvaliteten är viktigast. Men om det är en ändring på koden du sitter med just nu så spelar det större roll.
+-->
 
 ---
 
@@ -114,73 +145,6 @@ footer: "Falkenberg 2025"
 
 ---
 
-## Parametrar som påverkar beteende
-
-- **temperature**: slumpmässighet (0–0.2 deterministiskt, 0.7+ kreativt).
-- **top_p / top_k**: begränsar urval ur sannolikhetsmassa/antal kandidater.
-- **stop‑tokens**: kontrollera när svaret ska avslutas.
-- **max_tokens**: hårt tak på outputlängd.
-- Ange önskat format (t.ex. strikt JSON) för robustare integration.
-
----
-
-## Latens och skalning
-
-- Streama svar för tidig feedback till användare.
-- Batching och parallellisering där det går (oberoende delproblem).
-- Cache: resultat per prompt, retrieval-cache, mellanresultat.
-- Spekulativ decoding och distillering kan sänka latens (stöd varierar per leverantör).
-
----
-
-## Kvalitet och utvärdering
-
-- Skapa en guldmängd (inputs + förväntade outputs) tidigt.
-- Mät: precision/recall, strukturell korrekthet (JSON-schema), kostnad/latens.
-- Automatiserade jämförelser (A/B) mellan modeller och prompts.
-- Var försiktig med att bedöma "resonemang" — fokusera på korrekta slutresultat.
-
----
-
-## Säkerhet och efterlevnad
-
-- Prompt‑injektion: sanera källor och isolera modellens åtkomst.
-- PII/sekretess: undvik att skicka känsliga data till tredjepart; anonymisera eller självhosta.
-- Policyer: systemprompt + guardrails (validering, post‑processing, allowlist).
-- Loggning: logga prompts/outputs med tokenräkning, men respektera dataskydd.
-
----
-
-## Beslutsguide (tumregler)
-
-- Börja med snabb/billig modell. Byt upp dig bara om kvaliteten inte når målen.
-- Om uppgiften kräver flerstegsresonemang eller planering → pröva reasoning‑modell.
-- Om volymen är hög och formatet är strikt → överväg finetuning av liten modell.
-- Multimodalt? Använd multimodal endast där signalen behövs, annars extrahera först med specialiserade verktyg.
-
----
-
-## Checklista vid implementation
-
-- Definiera input/output‑schema och max tokens.
-- Sätt temperatur, stop‑tokens och JSON‑format.
-- Lägg till återförsök med jitter och idempotens.
-- Mät och logga: tokens_in, tokens_out, latens, fel.
-- Utvärdera regelbundet mot guldmängd och kostnadsbudget.
-
----
-
-## Exempel: Kostnad och outputkontroll
-
-- Kostnadsestimat per anrop:
-  - \(C = T*{in} \cdot P*{in} + T*{out} \cdot P*{out}\)
-- Sänk kostnad:
-  - Komprimera kontext (sammanfatta, hämta top‑k med RAG)
-  - Sätt `max_tokens` lågt och be om punktlistor
-  - Återanvänd tidigare beräknade svar via cache
-
----
-
 ## Exempel: Strukturerad output (JSON)
 
 ```
@@ -202,9 +166,3 @@ Text: ...
 - Mät kvalitet, kostnad och latens kontinuerligt och iterera.
 
 ---
-
-## Vidare läsning
-
-- Tokenisering och räknare: dokumentation från din leverantör och öppna bibliotek (t.ex. tiktoken‑kloner).
-- RAG‑mönster och vektordatabaser (semantisk sök, chunkning, citationer).
-- Säkerhet: prompt‑injektion, PII‑hantering, guardrails.
