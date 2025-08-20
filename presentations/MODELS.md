@@ -96,54 +96,76 @@ Men detta är något som alla har börjat fokusera mer på och prioritera när m
 
 ---
 
-## Prissättning: input vs output
-
-- De flesta leverantörer tar betalt per token, separat för input och output.
-- Outputtokens är ofta dyrare än inputtokens.
-- Enkel kostnadsformel: \(\text{kostnad} = \text{tokens}_{in} \times pris_{in} + \text{tokens}_{out} \times pris_{out}\).
-- Exempel (hypotetiskt): 800 in + 200 ut, pris_in = $0.5/1k, pris_out = $2/1k → kostnad ≈ $0.8 × $0.5 + $0.2 × $2 = $0.4 + $0.4 = $0.8.
-- Tips: Begränsa max outputtokens, använd sammanfattningar och strukturera svar för förutsägbar längd.
-
----
-
-## Modelltyper (översikt)
-
-- **Icke‑resonerande ("snabba")**: Optimerade för latens och pris. Bra på direktuppgifter: omskrivning, extraktion, enklare kod, chat.
-- **Resonerande**: Har intern "tankeprocess". Dyrare och långsammare men bättre på komplex problemlösning, planering, flerstegsuppgifter.
-- **Storlek**: Mindre (billigare, snabbare) vs större (bättre allmänt, robustare). Välj minsta som klarar kraven.
-- **Multimodala**: Tar text + bild/ljud/video. Praktiskt för kvitton, grafer, skärmdumpar, UI-förståelse.
-- **Öppen källkod vs sluten**: Självhosta för kontroll/sekretess; molnmodeller för toppkvalitet och enkelhet.
-
----
-
 ## Reasoning vs non‑reasoning
 
-- **Non‑reasoning**: Låg latens, låg kostnad, förutsägbara svar. Tappar kvalitet vid lång kedja av beroenden.
-- **Reasoning**: Producerar/optimerar intern kedja av resonemang. Högre noggrannhet i komplexa stegvis-uppgifter, men dyrare och långsammare.
-- Vanliga symptom: reasoning-modeller kan "tänka längre" och är robustare mot små promptvariationer.
+- **Reasoning**: steg‑för‑steg‑tänk, planerar och kontrollerar sig själv.
+<!--
+Modellen skriver mellanresonemang internt och bryter ned uppgiften i delsteg. Det ger bättre robusthet när problemet är otydligt, nytt eller kräver planering.
+-->
+
+- **Icke‑reasoning**: direkt svar utan långt mellanprat – snabb och billig.
+<!--
+Fokuserar på att producera slutsvaret snabbt. Passar när uppgiften är tydlig, kort och väldefinierad.
+-->
+
+- **Trade‑off**: reasoning = högre kvalitet på komplexa uppgifter; icke‑reasoning = bättre latens och kostnad.
+<!--
+Tänk arkitekt vs sprint‑hacker: välj rätt verktyg för rätt jobb.
+-->
 
 ---
 
 ## När välja reasoning?
 
-- Flerstegslogik, formella bevis/beräkningar, icke-trivial felsökning.
-- Planering över längre horisonter (jobbförslag, roadmap, pipeline-design).
-- Strikt verktygsorkestrering: välja rätt verktyg i rätt ordning.
-- När A/B visar för stor kvalitetsförlust med billigare modell.
+- När uppgiften är flerstegs eller oklar: design, arkitektur, rotorsaker, nya domäner.
+<!--
+Modellen behöver kunna testa hypoteser, planera och revidera.
+-->
+
+- När verktyg/agent‑flöden kräver planering över flera anrop.
+<!--
+Exempel: läsa/skriva många filer, köra tester, tolka resultat och justera planen.
+-->
+
+- När kvalitet prioriteras över latens och kostnad.
+<!--
+Bakgrundsjobb, riskfyllda ändringar, beslut med stor påverkan.
+-->
 
 ---
 
 ## När välja icke‑reasoning / liten modell?
 
-- Texttransformationer: översättning, sammanfattning, tonläge, formatering.
-- Informationsutvinning: nyckelfält ur kvitton/loggar, korta Q&A över känd fakta.
-- Enklare kodassistans (små diffar, boilerplate), generering av testfall från mall.
-- Hög volym, hårda SLO:er för latens och kostnad.
+- Snabba ändringar nära markören: små kodfixar, docstrings, enklare frågor.
+<!--
+Du vill ha reaktivitet och låg latens i editorn.
+-->
+
+- Interaktiv IDE‑assist: completion, rename, enkla refactorings.
+<!--
+Uppgifterna är väldefinierade och lokala.
+-->
+
+- Kostnadskänsliga batcher: summera, extrahera, skanna loggar/diffar.
+<!--
+Volym viktigare än toppkvalitet per enskilt svar.
+-->
 
 ---
 
 ## Sammanfattning
 
-- TODO
+- Välj modell efter uppgift: balansera kvalitet, hastighet och kostnad.
+<!--
+Det finns ingen bästa modell – bara rätt modell för problemet.
+-->
 
----
+- Reasoning för komplexitet/planering; icke‑reasoning för snabbhet.
+<!--
+Trade‑offen är kärnan: använd båda där de skiner.
+-->
+
+- Tool calling‑förmåga och context window påverkar resultatet stort.
+<!--
+Praktisk orkestrering och indata‑storlek kan avgöra modellvalet.
+-->
