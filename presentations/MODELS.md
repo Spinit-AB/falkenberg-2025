@@ -98,58 +98,36 @@ Men detta är något som alla har börjat fokusera mer på och prioritera när m
 
 ## Vad är en reasoning‑modell?
 
-- Skriver mellanresonemang och planerar stegvis innan svar.
+- Många av de nya modellerna idag är reasoning‑modeller.
 <!--
-Kallas ibland chain‑of‑thought (CoT). Modellen bryter ned problemet, testar hypoteser och kontrollerar sig själv.
+Nästan alla flaggskeppsmodeller är idag reasoning‑modeller; Så som GPT-5, Gemini 2.5 Pro och Claude 4 Sonnet/Opus, även om både GPT-5 och Claude 4 Sonnet också har en non‑reasoning-variant.
+-->
+
+- Är tränade på att bryta ned problem i mindre delar och tänka stegvis.
+
+- Resonerandet blir en del av modellens svar.
+<!--
+Att se hur modellen har resonerat på vägen till svaret kan ofta vara intressant. Tyvärr så döljer många providers detta, eller presenterar bara en summering av resonemanget.
 -->
 
 - Starkare på oklara, flerstegs‑ och öppna problem.
+
+- Långsammare och dyrare.
 <!--
-Ger högre robusthet och bättre felhantering än direkt‑svar.
--->
+Skillnaden i pris kan vara väldigt stor.
 
-- Många nya och mest kapabla modeller idag är reasoning‑modeller.
-<!--
-Flaggskeppsmodeller prioriterar reasoning; icke‑reasoning används främst för snabbhet/kostnad.
--->
-
----
-
-## Reasoning vs non‑reasoning
-
-- **Reasoning**: steg‑för‑steg‑tänk, planerar och kontrollerar sig själv.
-<!--
-Modellen skriver mellanresonemang internt och bryter ned uppgiften i delsteg. Det ger bättre robusthet när problemet är otydligt, nytt eller kräver planering.
--->
-
-- **Icke‑reasoning**: direkt svar utan långt mellanprat – snabb och billig.
-<!--
-Fokuserar på att producera slutsvaret snabbt. Passar när uppgiften är tydlig, kort och väldefinierad.
--->
-
-- **Trade‑off**: reasoning = högre kvalitet på komplexa uppgifter; icke‑reasoning = bättre latens och kostnad.
-<!--
-Tänk arkitekt vs sprint‑hacker: välj rätt verktyg för rätt jobb.
+Att köra de benchmarks som ligger bakom rankingen jag visade tidigare kostar t.ex. sex gånger så mycket med reasoning-varianten av Claude 4 Sonnet som med non-reasoning-varianten.
 -->
 
 ---
 
-## När välja reasoning?
+## När ska man välja reasoning?
 
 - När uppgiften är flerstegs eller oklar: design, arkitektur, rotorsaker, nya domäner.
-<!--
-Modellen behöver kunna testa hypoteser, planera och revidera.
--->
 
 - När verktyg/agent‑flöden kräver planering över flera anrop.
-<!--
-Exempel: läsa/skriva många filer, köra tester, tolka resultat och justera planen.
--->
 
-- När kvalitet prioriteras över latens och kostnad.
-<!--
-Bakgrundsjobb, riskfyllda ändringar, beslut med stor påverkan.
--->
+- När kvalitet prioriteras över hastighet och kostnad.
 
 ---
 
@@ -179,12 +157,7 @@ Volym viktigare än toppkvalitet per enskilt svar.
 Det finns ingen bästa modell – bara rätt modell för problemet.
 -->
 
-- Reasoning för komplexitet/planering; icke‑reasoning för snabbhet.
+- Reasoning för komplexitet/planering; non‑reasoning för snabbhet.
 <!--
 Trade‑offen är kärnan: använd båda där de skiner.
--->
-
-- Tool calling‑förmåga och context window påverkar resultatet stort.
-<!--
-Praktisk orkestrering och indata‑storlek kan avgöra modellvalet.
 -->
