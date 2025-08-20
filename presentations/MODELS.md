@@ -57,20 +57,37 @@ Om du startar en agent som arbetar i bakgrunden medan du själv jobbar med någo
 
 ---
 
-## Tokens 101
+## Andra faktorer
 
-- En token ≈ 3–5 tecken, ofta ~0,7–1,3 ord beroende på språk och texttyp.
-- Allt räknas som tokens: systemprompt, användarinput, verktygssvar och modellens output.
-- Tokenbudget = max antal tokens per anrop ("kontextfönster"). Långa indata kan behöva sammanfattas eller chunkas.
-- Praktiskt: Håll prompts och exempel snåla, återanvänd via variabler, streama output när möjligt.
+- **Context window**: hur många tokens _(1 token ≈ 3–5 tecken)_ modellen kan hantera samtidigt.
+<!--
+Alltså hur mycket text du kan skicka med i en fråga. Detta börjar spela roll om du t.ex. vill skicka med stora delar av en kodbas, loggar, dokumentation eller andra långa texter.
+
+Idag så klarar de mest populära modellerna stora context windows. Claude 4 Sonnet och Gemini 2.5 Pro klarar t.ex. en miljon tokens vilket motsvarar ungefär 100 000 rader kod. GPT-5 klarar 400 000 tokens.
+-->
+
+- **Säkerhet**: var skickas din data?
+<!--
+Här är det egentligen inte modellen som spelar någon roll, utan det är vem som servear modellen till dig. Modellen är i stort sett bara ett enormt antal vektorer och utgör i sig ingen fara.
+
+Så t.ex. är det säkert att använda kinesiska modeller bara den serveas utav en pålitlig leverantör som t.ex. Microsoft via Azure eller Amazon via AWS.
+-->
+
+- **Function/tool calling**: behöver du att modellen klarar av att använda externa verktyg?
+<!--
+Om du ska använda modellen i agenter så som t.ex. Copilot är detta ofta avgörande och det kan skilja väldigt mycket mellan olika modeller.
+-->
 
 ---
 
-## Kontextfönster
+## Tool calling
 
-- Storleken avgör hur mycket indata modellen kan överväga samtidigt.
-- Stort fönster ≠ perfekt minne; relevans minskar ofta med avstånd.
-- Långa dokument: använd RAG (retrieval) eller externa minnen istället för att klistra in allt.
+- **Vad är tool calling?** Modellen anropar definierade verktyg med strukturerade argument för att söka/läsa/skriva filer, köra kommandon m.m.
+<!--
+I Copilot‑kodagenten i VS Code innebär det att modellen själv väljer när den ska använda t.ex. kodsökning, öppna/läsa/skriva filer, köra tester eller git‑kommandon. Du beskriver målet; modellen planerar och orkestrerar anropen.
+-->
+
+- 
 
 ---
 
@@ -120,49 +137,8 @@ Om du startar en agent som arbetar i bakgrunden medan du själv jobbar med någo
 
 ---
 
-## Multimodalitet (kort)
-
-- Bild→text: OCR, UI-analys, diagramextraktion.
-- Text→tal / tal→text: röstgränssnitt, callcenter.
-- Video: scenbeskrivningar, innehållspolicy.
-- Kostnad och latens kan öka kraftigt — använd selektivt och nedskalat (t.ex. tumregler, crops, sampling).
-
----
-
-## Verktygskall och RAG
-
-- **Function calling / verktyg**: Beskriv API-schema; modellen väljer funktion och argument. Bra för databasanrop, sök, kalkyl.
-- **RAG (Retrieval‑Augmented Generation)**: Hämta relevanta bitar från din kunskapsbas och ge modellen som kontext. Minskar hallucinationer.
-- Bästa praxis: semantisk sök, chunkning med metadata, citat i svar, cachea retrieval.
-
----
-
-## Finetuning vs prompting
-
-- **Prompting**: Snabbt, billigt, lätt att iterera. Räcker långt med bra exempel och format.
-- **Finetuning**: Lönar sig när samma smala uppgift återkommer och kräver konsekvent stil/format.
-- Undvik finetuning för rena fakta – använd RAG. Finetuna för stil, klassificering, extraktion.
-
----
-
-## Exempel: Strukturerad output (JSON)
-
-```
-System: Du är en noggrann extraktor. Svara ENDAST med giltig JSON enligt schema.
-Användare: Plocka ut {namn, belopp, valuta, datum} ur texten. Missing → null.
-Outputformat: {"namn": string|null, "belopp": number|null, "valuta": string|null, "datum": string|null}
-Text: ...
-```
-
-- Validera mot schema; avvisa ogiltiga svar och återförsök.
-
----
-
 ## Sammanfattning
 
-- Tokens styr både kontext och kostnad — räkna på dem.
-- Välj minsta modell som klarar kraven; reasoning för verkligt komplexa kedjor.
-- Använd verktyg/RAG för fakta och integrationer; finetuna för snäva, återkommande format.
-- Mät kvalitet, kostnad och latens kontinuerligt och iterera.
+- TODO
 
 ---
