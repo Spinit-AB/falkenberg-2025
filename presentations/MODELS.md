@@ -82,12 +82,17 @@ Om du ska använda modellen i agenter så som t.ex. Copilot är detta ofta avgö
 
 ## Tool calling
 
-- **Vad är tool calling?** Modellen anropar definierade verktyg med strukturerade argument för att söka/läsa/skriva filer, köra kommandon m.m.
+- **Vad är tool calling?** Modellen anropar definierade verktyg med strukturerade argument för att t.ex. söka/läsa/skriva filer, köra kommandon eller skicka ett meddelande i Slack.
 <!--
 I Copilot‑kodagenten i VS Code innebär det att modellen själv väljer när den ska använda t.ex. kodsökning, öppna/läsa/skriva filer, köra tester eller git‑kommandon. Du beskriver målet; modellen planerar och orkestrerar anropen.
 -->
 
-- 
+- Stor skillnad mellan modeller.
+<!--
+Claude-modellerna från Anthropic är väldigt bra på tool calling och att följa instruktioner, och har varit det ganska länge nu. Detta är anledningen till att Claude-modellerna är så populära att använda i agenter och kodgenereringsverktyg.
+
+Men detta är något som alla har börjat fokusera mer på och prioritera när modellerna tränas, så många av de nyare modellerna är ganska bra på detta, och det spelar också väldigt stor roll hur modellerna promptas för tool calling.
+-->
 
 ---
 
