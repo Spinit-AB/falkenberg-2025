@@ -11,7 +11,7 @@ footer: "Falkenberg 2025"
 
 # Språkmodeller för utvecklare
 
-- **Syfte**: Förstå skillnader mellan modeller, tokens och priser, vad reasoning innebär, samt när man väljer vilken modell.
+- **Syfte**: Förstå skillnader mellan olika språkmodeller och när man ska välja vilken typ av modell.
 
 ---
 
@@ -92,6 +92,25 @@ I Copilot‑kodagenten i VS Code innebär det att modellen själv väljer när d
 Claude-modellerna från Anthropic är väldigt bra på tool calling och att följa instruktioner, och har varit det ganska länge nu. Detta är anledningen till att Claude-modellerna är så populära att använda i agenter och kodgenereringsverktyg.
 
 Men detta är något som alla har börjat fokusera mer på och prioritera när modellerna tränas, så många av de nyare modellerna är ganska bra på detta, och det spelar också väldigt stor roll hur modellerna promptas för tool calling.
+-->
+
+---
+
+## Vad är en reasoning‑modell?
+
+- Skriver mellanresonemang och planerar stegvis innan svar.
+<!--
+Kallas ibland chain‑of‑thought (CoT). Modellen bryter ned problemet, testar hypoteser och kontrollerar sig själv.
+-->
+
+- Starkare på oklara, flerstegs‑ och öppna problem.
+<!--
+Ger högre robusthet och bättre felhantering än direkt‑svar.
+-->
+
+- Många nya och mest kapabla modeller idag är reasoning‑modeller.
+<!--
+Flaggskeppsmodeller prioriterar reasoning; icke‑reasoning används främst för snabbhet/kostnad.
 -->
 
 ---
