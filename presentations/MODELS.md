@@ -121,6 +121,8 @@ Att köra de benchmarks som ligger bakom rankingen jag visade tidigare kostar t.
 
 ---
 
+TODO ALLT NEDAN HÄR!
+
 ## När ska man välja reasoning?
 
 - När uppgiften är flerstegs eller oklar: design, arkitektur, rotorsaker, nya domäner.
