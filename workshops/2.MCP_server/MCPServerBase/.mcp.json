@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "MCPServerBase": {
+      "type": "stdio",
+      "command": "D:\\source\\ai\\MCPServerBase\\MCPServerBase\\bin\\Debug\\net9.0\\MCPServerBase.exe"
+    }
+  },
+  "inputs": []
+}
