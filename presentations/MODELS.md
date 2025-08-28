@@ -121,45 +121,32 @@ Att köra de benchmarks som ligger bakom rankingen jag visade tidigare kostar t.
 
 ---
 
-TODO ALLT NEDAN HÄR!
+## När ska man inte välja en reasoning-modell?
 
-## När ska man välja reasoning?
-
-- När uppgiften är flerstegs eller oklar: design, arkitektur, rotorsaker, nya domäner.
-
-- När verktyg/agent‑flöden kräver planering över flera anrop.
-
-- När kvalitet prioriteras över hastighet och kostnad.
-
----
-
-## När välja icke‑reasoning / liten modell?
-
-- Snabba ändringar nära markören: små kodfixar, docstrings, enklare frågor.
 <!--
-Du vill ha reaktivitet och låg latens i editorn.
+Ja, det är enklare att förklara när man kanske inte vill använda en reasoning-modell än det motsatta. För när det gäller de flesta användningsområdena så kommer du vilja använda en reasoning-modell, kvalitet eller intelligens om man vill säga så prioriteras.
+
+Men ja, när det kommer till sin editor så är det ändå ganska ofta då man prioriterar hastigheten. Så som vid:
 -->
 
-- Interaktiv IDE‑assist: completion, rename, enkla refactorings.
+- **Snabba ändringar nära markören**: små kodfixar, kommentarer, enklare frågor.
 <!--
-Uppgifterna är väldefinierade och lokala.
+Du vill snabbt få svar och fortsätta med det du håller på med.
 -->
 
-- Kostnadskänsliga batcher: summera, extrahera, skanna loggar/diffar.
+- **Kostnadskänsliga uppgifter**: summeringar, översättningar, extrahering, loggsökningar.
 <!--
-Volym viktigare än toppkvalitet per enskilt svar.
+Om man har stora mängder data som ska hanteras så kan det ofta räcka med att använda en billigare och snabbare modell.
+-->
+
+<!--
+Egentligen så är detta inte något specifikt till reasoning-modeller, utan hastighet, kostnad och kvalitet skiljer sig väldigt mycket mellan modeller även inom dessa två kategorier.
 -->
 
 ---
 
 ## Sammanfattning
 
-- Välj modell efter uppgift: balansera kvalitet, hastighet och kostnad.
-<!--
-Det finns ingen bästa modell – bara rätt modell för problemet.
--->
-
-- Reasoning för komplexitet/planering; non‑reasoning för snabbhet.
-<!--
-Trade‑offen är kärnan: använd båda där de skiner.
--->
+- **Välj rätt modell för jobbet**: Ingen modell är bäst på allt. Valet beror på uppgiften – kodning, analys, snabba ändringar, etc.
+- **Benchmarks ofta opålitliga**: Titta på relevanta tester för ditt användningsområde, testa och få en känsla för nya modeller.
+- **Balansera kvalitet, hastighet och kostnad**: En "smartare" modell är ofta långsammare och dyrare. Använd dem för komplexa problem. För enklare uppgifter räcker ofta en snabbare och billigare modell.
