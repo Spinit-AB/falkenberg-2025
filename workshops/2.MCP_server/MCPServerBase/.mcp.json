@@ -2,7 +2,7 @@
   "servers": {
     "MCPServerBase": {
       "type": "stdio",
-      "command": "D:\\source\\ai\\MCPServerBase\\MCPServerBase\\bin\\Debug\\net9.0\\MCPServerBase.exe"
+      "command": "D:\\falkenberg-2025\\workshops\\2.MCP_server\\MCPServerBase\\MCPServerBase\\bin\\Debug\\net9.0\\MCPServerBase.exe"
     }
   },
   "inputs": []
